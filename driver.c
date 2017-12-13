@@ -4,6 +4,13 @@ int freeMemory(int *ptr);
 int isMemoryValid(void *ptr);
 int getMemorySize(void *ptr);
 
+// keep track of the pointer where to next place a memory block
+// the int returned will be in hex
+
+// create a struct that has a pointer address, and size of object.
+
+// make an array of those objects
+
 //Allocates the memory to be used by the methods below.
 //Returns 0 on success, -1 on failure
 int initMemory(int sizeOfRegion)
