@@ -1,3 +1,24 @@
+
+#include <math.h>
+#include <sys/mman.h>
+#include <stdlib.h>
+
+typedef struct block {
+	int start;
+	int end;
+	int flagged;
+	
+}Block;
+
+struct block** blocks;
+
+int size;
+
+int currIndex = 0;
+
+
+
+// Template out methods
 int initMemory(int sizeOfRegion);
 void *allocateMemory(int size);
 int freeMemory(int *ptr);
@@ -11,6 +32,12 @@ int getMemorySize(void *ptr);
 
 // make an array of those objects
 
+int main()
+{
+	return 0;
+}
+
+
 //Allocates the memory to be used by the methods below.
 //Returns 0 on success, -1 on failure
 int initMemory(int sizeOfRegion)
@@ -23,9 +50,13 @@ int initMemory(int sizeOfRegion)
 		sizeOfRegion = temp * ceil(sizeOfRegion / temp);
 	}
 
-	int *memoryPointer = mmap(0, sizeOfRegion, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, 0, 0);
+	int* memoryPointer = (int*) mmap(0, sizeOfRegion, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, 0, 0);
 
-	return memoryPointer;
+	blocks = malloc(sizeOfRegion * sizeof(struct block*));
+
+	size = sizeOfRegion;
+
+	return (int) memoryPointer;
 }
 
 //Allocates size amount of memory and returns a pointer to the start of the memory block
